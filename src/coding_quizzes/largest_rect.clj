@@ -15,14 +15,12 @@
     [i j]))
 
 (defn- matrix->indices-alt [m]
-  (let [find-ones (fn [i v] (when (= 1 v) i))
-        xf (comp (map #(map-indexed find-ones %))
-                 (map #(remove nil? %)))
-        indices (->> m
-                     (into [] xf)
-                     (map-indexed (fn [i v] (map #(vector i %) v)))
-                     (mapcat identity))]
-    indices))
+  (let [find-ones (fn [i v] (when (= 1 v) i))]
+    (->> m
+         (into [] (comp (map (partial map-indexed find-ones))
+                        (map (partial remove nil?))))
+         (map-indexed (fn [i v] (map (partial vector i) v)))
+         (mapcat identity))))
 
 (defn- gen-pairs [s]
   (for [[x1 y1 :as v1] s
@@ -54,7 +52,7 @@
 ;; - each cell should compute a max value which is the max of (max(x), max(y), max(area))
 ;; - global max value is then computed out of all cells
   (let [matrix (or input matrix)
-        ones (matrix->indices matrix)
+        ones (matrix->indices-alt matrix)
         ones' (set ones)
         pairs (gen-pairs ones)
         is-rect? #(set/subset? (set %) ones')
