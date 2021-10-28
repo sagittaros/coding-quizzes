@@ -2,10 +2,11 @@
   (:require
    [clojure.set :as set]))
 
-(def matrix [[1 0 1 0 0]
-             [1 0 1 1 1]
-             [1 1 1 1 1]
-             [1 0 0 1 0]])
+(def matrix
+  [[1 0 1 0 0]
+   [1 0 1 1 1]
+   [1 1 1 1 1]
+   [1 0 0 1 0]])
 
 (defn- matrix->indices [m]
   (for [[i vals] (map-indexed vector m)
@@ -13,7 +14,7 @@
         :when (= 1 val)]
     [i j]))
 
-(defn- matrix->indices2 [m]
+(defn- matrix->indices-alt [m]
   (let [find-ones (fn [i v] (when (= 1 v) i))
         xf (comp (map #(map-indexed find-ones %))
                  (map #(remove nil? %)))
@@ -68,7 +69,7 @@
   (zipmap (range) [2 3 4 5])
   (map-indexed vector [2 3 4 5])
   (= (matrix->indices matrix)
-     (matrix->indices2 matrix))
+     (matrix->indices-alt matrix))
   (-> matrix
       matrix->indices
       gen-pairs
