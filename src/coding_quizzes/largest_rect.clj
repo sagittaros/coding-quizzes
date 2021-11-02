@@ -34,16 +34,6 @@
           y (range ay (inc by))]
       [x y])))
 
-(comment
-  ;; index visualization
-  '(([0 0] [0 2])
-    ([1 0] [1 2] [1 3] [1 4])
-    ([2 0] [2 1] [2 2] [2 3] [2 4])
-    ([3 0] [3 3]))
-
-  ;; flattened index
-  '([0 0] [0 2] [1 0] [1 2] [1 3] [1 4] [2 0] [2 1] [2 2] [2 3] [2 4] [3 0] [3 3]))
-
 (defn find-largest-rect [& [input]]
 ;; strategy:
 ;; - convert indices into set (https://clojuredocs.org/clojure.core/set)
@@ -62,6 +52,16 @@
     (->> pairs
          (into [] xf)
          (apply max))))
+
+(comment
+  ;; index visualization
+  '(([0 0] [0 2])
+    ([1 0] [1 2] [1 3] [1 4])
+    ([2 0] [2 1] [2 2] [2 3] [2 4])
+    ([3 0] [3 3]))
+
+  ;; flattened index
+  '([0 0] [0 2] [1 0] [1 2] [1 3] [1 4] [2 0] [2 1] [2 2] [2 3] [2 4] [3 0] [3 3]))
 
 (comment
   (zipmap (range) [2 3 4 5])

@@ -22,3 +22,5 @@
        join-keys
        vec->str
        (into (hash-map))))
+
+(mapcat identity [[1 2]])
