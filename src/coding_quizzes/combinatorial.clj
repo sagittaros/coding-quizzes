@@ -27,6 +27,12 @@
   (all-combination inputs)
   (all-combination-alt inputs)
 
+  ;; alternative way to unnest vector
+  (let [xs (all-combination-alt inputs)]
+    (for [temp xs
+          x temp]
+      x))
+
   '(["apple" "orange" "pear"]
     ["orange" "pear"]
     ["pear"]
