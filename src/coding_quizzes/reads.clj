@@ -117,7 +117,22 @@
                 [4 5 6]
                 [7 8 9]]]
     (walk/postwalk #(if (number? %) (inc %) %) matrix)
-    (walk/prewalk #(if (number? %) (inc %) %) matrix)))
+    (walk/prewalk #(if (number? %) (inc %) %) matrix))
+
+  (walk/walk (fn [[k v]] [k (* 10 v)]) identity {:a 1 :b 2 :c 3})
+  (walk/postwalk #(if (number? %) (* 10 %) %) {:a 1 :b {:x 2 :y 4} :c 3}))
+
+(comment
+  ;; https://clojuredocs.org/clojure.core/sort-by
+  ;; sort example
+  (sort-by :added-at > [{:added-at 3 :name :c}
+                        {:added-at 1 :name :a}
+                        {:added-at 2 :name :b}
+                        {:added-at 4 :name :d}])
+  (sort-by :added-at [{:added-at 3 :name :c}
+                      {:added-at 1 :name :a}
+                      {:added-at 2 :name :b}
+                      {:added-at 4 :name :d}]))
 
 ;; ===========================================================
 ;; TODO Seq is powerfu!! learn them
