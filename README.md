@@ -1,44 +1,85 @@
 # coding-quizzes
 
-FIXME: description
+# Understand tail recursion, trampoline, loop/recur
+https://clojuredocs.org/clojure.core/recur
 
-## Installation
+# Read basic sequence manipulation
+[reads.clj](./src/coding_quizzes/reads.clj)
 
-Download from http://example.com/FIXME.
+# Understand complexity
 
-## Usage
+Read this article for intuition [Intuition between permutation and combination](https://buildingvts.com/intuition-behind-permutations-and-combinations-db6ffa5272be)
 
-FIXME: explanation
+Basic understanding of NP-completeness and complexity:
+[Factorial time](https://jarednielsen.com/big-o-factorial-time-complexity/)
 
-    $ java -jar coding-quizzes-0.1.0-standalone.jar [args]
+## Notations
+- average case = theta
+- worst case = Big O
+- best case = Omega
 
-## Options
+## Common ones
 
-FIXME: listing of options this app accepts.
+#### log n (log time)
 
-## Examples
+When a problem is divide/conquered in the form of halving, the computation time became log time
 
-...
+#### n log n (aka log linear time)
 
-### Bugs
+Most sorting algorithms fall under this category.
+Instead of n^2 (for each item, check the other items), it becomes n*(log n). When using tree/halving, the growth rate is always log n
 
-...
+#### 2^n (exponential time)
+`2^n` is when recursive calls happen, where `n` is the `depth` or `height` of the tree.
+Fibonacci sequence falls under this example
 
-### Any Other Sections
-### That You Think
-### Might be Useful
+``` clojure
+(+ (fib n) 
+    (fib (dec n)))
+```
 
-## License
+There are variants of this class, "Cartesian product of arrays".
+Given n = length, x = numOfArrays, the complexity is n^x
 
-Copyright © 2021 FIXME
+#### n! (factorial time)
 
-This program and the accompanying materials are made available under the
-terms of the Eclipse Public License 2.0 which is available at
-http://www.eclipse.org/legal/epl-2.0.
+This is the most expensive algorithm. Time-traveling-salesman and combinatorial problems fall under this. Because there are (factorial) amount of checks to perform.
 
-This Source Code may also be made available under the following Secondary
-Licenses when the conditions for such availability set forth in the Eclipse
-Public License, v. 2.0 are satisfied: GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or (at your
-option) any later version, with the GNU Classpath Exception which is available
-at https://www.gnu.org/software/classpath/license.html.
+They are also known as NP-complete problems
+
+Use heuristics to perform this:
+- simulated annealing
+- ant colony optimization
+- or use something like minizinc optimization library
+
+# Use lispy stuff
+
+use syntax quoting, unquote(~), and unquote-splicing(~@) to simplify code
+https://clojure.org/guides/weird_characters#unqote
+
+# Graph search problem
+
+- DFS
+- BFS
+- Trie
+- Djisktra problem
+- Bellman Ford
+- Minimum Spanning Tree
+
+# Pattern searching
+
+My weakest area!!
+https://www.geeksforgeeks.org/naive-algorithm-for-pattern-searching/?ref=lbp
+https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/?ref=lbp
+
+# Simulated Arithmetic
+
+- https://www.geeksforgeeks.org/square-root-of-a-perfect-square/?ref=lbp
+- https://adventofcode.com/2021/day/24
+
+# More things!
+
+- [CoRecursion](http://squirrel.pl/blog/2010/07/26/corecursion-in-clojure/)
+- [Old problems](https://gist.github.com/sagittaros/d939836282043500fa907637c611cff9)
+- [Clique problem](https://en.wikipedia.org/wiki/Clique_problem)
+- [Basic data structure/problems](https://u.osu.edu/cstutorials/2016/11/21/7-algorithms-and-data-structures-every-programmer-must-know/)
