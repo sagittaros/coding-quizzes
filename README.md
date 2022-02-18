@@ -1,6 +1,13 @@
 # coding-quizzes
 
-# Understand tail recursion, trampoline, loop/recur
+# Recursion 
+## Understand tower of hanoi
+https://www.youtube.com/watch?v=rf6uf3jNjbo
+
+## Understand recursion thinking patterns
+https://www.youtube.com/watch?v=ngCos392W4w
+
+## Understand tail recursion, trampoline, loop/recur
 https://clojuredocs.org/clojure.core/recur
 
 # Read basic sequence manipulation

@@ -3,17 +3,27 @@
    [clojure.edn :as edn]
    [clojure.string :as str]))
 
-(defn parse-last? [xs]
-  (let [v (-> xs last edn/read-string)]
-    (if (integer? v)
-      (conj (drop-last xs) v)
-      xs)))
+(def opcodes #{"add" "mul" "div" "mod" "eql" "inp" "x" "y" "z" "w"})
 
-(def input (as-> "src/aoc21/day24/input.txt" v
-             (slurp v)
-             (str/split v #"\n")
-             (map #(str/split % #"\s") v)
-             (map parse-last? v)))
+(def parse
+  (partial map #(if (opcodes %) (keyword %)
+                    (edn/read-string %))))
+
+(def instructions (as-> "src/aoc21/day24/input.txt" ?
+                    (slurp ?)
+                    (str/split ? #"\n")
+                    (map #(str/split % #"\s") ?)
+                    (map parse ?)))
+
+(defn alu [input]
+  {:memory {:x 0 :y 0 :z 0 :w 0}
+   :input input})
+
+(def ops {:mul *
+          :add +
+          :div (fn [a b] (int (/ a b)))
+          :mod mod
+          :eql (fn [a b] (if (= a b) 1 0))})
 
 (comment
-  input)
+  instructions)
