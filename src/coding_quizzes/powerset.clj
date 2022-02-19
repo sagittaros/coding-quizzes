@@ -30,5 +30,6 @@
       (#(vector (count %) %))))
 
 ;; =======================================
-;; USE BACKTRACKING
+;; TODO USE BACKTRACKING
 ;; complexity = n(2^n)
+

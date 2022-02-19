@@ -22,8 +22,9 @@ https://clojuredocs.org/clojure.core/recur
 - [reads.clj](./src/coding_quizzes/reads.clj)
 - [utils.clj](./src/coding_quizzes/utils.clj)
 - `loop/recur` is useful for divergent computation (1 to many)
+- *TODO* - how about factorial function?? do we use loop/recur?
 - `corecursion` is useful for series induction
-- `for` is useful to convergent computation (many to 1)
+- `reduce` is useful to convergent computation (many to 1)
 - use `for` when nested loop is expected
 
 
