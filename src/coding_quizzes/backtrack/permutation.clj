@@ -1,4 +1,4 @@
-(ns coding-quizzes.backtracking-permutation)
+(ns coding-quizzes.backtrack.permutation)
 
 (defn permute [choices & [result walked]]
   (if (empty? choices)
