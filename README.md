@@ -1,5 +1,9 @@
 # coding-quizzes
 
+# Reading materials
+
+- https://labuladong.gitbook.io/algo-en/
+
 # Recursion 
 ## Understand tower of hanoi
 https://www.youtube.com/watch?v=rf6uf3jNjbo
@@ -115,8 +119,26 @@ https://clojure.org/guides/weird_characters#unqote
 
 # Backtracking
 
+Backtracking usually means exhausting the decision tree, like in a permutation problem.
+The time complexity is usually factorial time: O(n!)
+
+- https://labuladong.gitbook.io/algo-en/iii.-algorithmic-thinking/detailsaboutbacktracking
 - https://www.baeldung.com/cs/backtracking-algorithms
 - https://www.baeldung.com/cs/backtracking-vs-dfs
+
+``` python
+# pseudocode of backtracking framework
+result = []
+def backtrack(Path, Seletion List  ):
+    if meet the End Conditon:
+        result.add(Path)
+        return
+
+    for seletion in Seletion List:
+        select
+        backtrack(Path, Seletion List)
+        deselect
+```
 
 # Game theory and min-max algorithm
 
@@ -140,3 +162,4 @@ https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/?ref=lbp
 - [Clique problem](https://en.wikipedia.org/wiki/Clique_problem)
 - [Basic data structure/problems](https://u.osu.edu/cstutorials/2016/11/21/7-algorithms-and-data-structures-every-programmer-must-know/)
 - [Mazes](https://markbastian.github.io/posts-output/2015-04-11-mazes/)
+- [Drop water problem](https://labuladong.gitbook.io/algo-en/iv.-high-frequency-interview-problem/trapping_rain_water)
