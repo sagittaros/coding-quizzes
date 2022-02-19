@@ -1,13 +1,12 @@
 (ns coding-quizzes.recursion)
 
+;; =========================
+;; Fibonacci sequence
+
 (defn slow-fib [i] ;; O(2^n)
   (if (<= i 1) i
       (+ (slow-fib (- i 1))
          (slow-fib (- i 2)))))
-
-(defn slow-factorial! [n]
-  (if (= n 1) 1
-      (* n (slow-factorial! (dec n)))))
 
 (defn fib-recur [n]
   (loop [i 1
@@ -20,9 +19,24 @@
 ;; 0 1 1 2 3 5
 (def fib (lazy-cat [0 1] (map + fib (rest fib))))
 
+;; =========================
+;; Factorial
+
+(defn slow-factorial! [n]
+  (if (= n 1) 1
+      (* n (slow-factorial! (dec n)))))
+
+(defn factorial! [n]
+  (loop [i 1
+         acc 1]
+    (if (= i n)
+      (* acc n)
+      (recur (inc i) (* acc i)))))
+
 (comment
   (slow-fib 4)
   (slow-factorial! 4)
+  (factorial! 4)
 
   (map + [0 1] [1])
   (fib-recur 20)

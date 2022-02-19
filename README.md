@@ -13,6 +13,11 @@ https://clojuredocs.org/clojure.core/recur
 # Read basic sequence manipulation
 [reads.clj](./src/coding_quizzes/reads.clj)
 
+- loop/recur is useful for divergent computation (1 to many)
+- corecursion is useful for series induction
+- reduce is useful to convergent computation (many to 1)
+
+
 # Understand complexity
 
 Read this article for intuition [Intuition between permutation and combination](https://buildingvts.com/intuition-behind-permutations-and-combinations-db6ffa5272be)
@@ -25,9 +30,19 @@ Basic understanding of NP-completeness and complexity:
 - worst case = Big O
 - best case = Omega
 
+## Understanding series
+
+https://www.toppr.com/guides/quantitative-aptitude/number-series/geometric-series/
+
+#### Geometric series
+
+Tower of hanoi falls under this
+
+(n/(n-1)) = r, where r = ratio
+
 ## Common ones
 
-#### log n (log time)
+#### log n (log time, *halving*)
 
 When a problem is divide/conquered in the form of halving, the computation time became log time
 
@@ -36,8 +51,9 @@ When a problem is divide/conquered in the form of halving, the computation time 
 Most sorting algorithms fall under this category.
 Instead of n^2 (for each item, check the other items), it becomes n*(log n). When using tree/halving, the growth rate is always log n
 
-#### 2^n (exponential time)
-`2^n` is when recursive calls happen, where `n` is the `depth` or `height` of the tree.
+#### 2^n (exponential time, *doubling*)
+`2^n` implies a doubling nature. 2^1 = 2, 2^2 = 4, 2^3 = 8
+`2^n` is also when recursive calls happen, where `n` is the `depth` or `height` of the tree.
 Fibonacci sequence falls under this example
 
 ``` clojure
@@ -73,6 +89,15 @@ https://clojure.org/guides/weird_characters#unqote
 - Bellman Ford
 - Minimum Spanning Tree
 
+# Backtracking
+
+- https://www.baeldung.com/cs/backtracking-algorithms
+- https://www.baeldung.com/cs/backtracking-vs-dfs
+
+# Game theory and min-max algorithm
+
+https://www.geeksforgeeks.org/minimax-algorithm-in-game-theory-set-1-introduction/
+
 # Pattern searching
 
 My weakest area!!
@@ -90,3 +115,4 @@ https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/?ref=lbp
 - [Old problems](https://gist.github.com/sagittaros/d939836282043500fa907637c611cff9)
 - [Clique problem](https://en.wikipedia.org/wiki/Clique_problem)
 - [Basic data structure/problems](https://u.osu.edu/cstutorials/2016/11/21/7-algorithms-and-data-structures-every-programmer-must-know/)
+- [Mazes](https://markbastian.github.io/posts-output/2015-04-11-mazes/)
