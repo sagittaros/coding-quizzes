@@ -4,6 +4,8 @@
 ## Understand tower of hanoi
 https://www.youtube.com/watch?v=rf6uf3jNjbo
 
+time complexity of Tower of Hanoi is 2^n
+
 ## Understand recursion thinking patterns
 https://www.youtube.com/watch?v=ngCos392W4w
 
@@ -12,11 +14,13 @@ https://clojuredocs.org/clojure.core/recur
 
 # Read basic sequence manipulation
 
+- use (zipmap (range) items) to create indexed items
 - [reads.clj](./src/coding_quizzes/reads.clj)
 - [utils.clj](./src/coding_quizzes/utils.clj)
-- loop/recur is useful for divergent computation (1 to many)
-- corecursion is useful for series induction
-- reduce is useful to convergent computation (many to 1)
+- `loop/recur` is useful for divergent computation (1 to many)
+- `corecursion` is useful for series induction
+- `for` is useful to convergent computation (many to 1)
+- use `for` when nested loop is expected
 
 
 # Understand complexity
@@ -30,6 +34,12 @@ Basic understanding of NP-completeness and complexity:
 - average case = theta
 - worst case = Big O
 - best case = Omega
+
+## Understanding loops
+
+Complexity of loop or nested loop = total loop count * complexity of iteration
+
+https://www.enjoyalgorithms.com/blog/time-complexity-analysis-of-loop-in-programming
 
 ## Understanding series
 
@@ -75,6 +85,15 @@ Use heuristics to perform this:
 - simulated annealing
 - ant colony optimization
 - or use something like minizinc optimization library
+
+# Familiar with bitwise operations
+
+https://cek.io/blog/2017/08/17/clojure-introduction-binary-bitwise/
+
+- bit-and
+- bit-or
+- (bit-shift-right n x) (halves n, by removing x least significant bit)
+- (bit-shift-left n x) (doubles n for x times)
 
 # Use lispy stuff
 

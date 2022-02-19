@@ -1,44 +1,28 @@
-(ns coding-quizzes.powerset)
+(ns coding-quizzes.powerset
+  (:require [coding-quizzes.utils :refer [exp]]))
 
-(def inputs '("apple" "orange" "pear" "pineapple" "papaya"))
+(def inputs '("apple" "orange" "pear"))
 
 ;; =======================================
 ;; Iterative approach
 ;; https://cs.stackexchange.com/questions/121230/explanation-of-on2n-time-complexity-for-powerset-generation
 ;; complexity = n(2^n)
 
-(defn bad-naive-powerset
-  "Find all combination (alternative)"
-  [xs]
-  (->> xs
-       ((comp range count)) ;; convert to index
-       (mapcat #(->> xs
-                     (remove (partial = (nth xs %)))
-                     bad-naive-powerset))
-       (cons xs)
-       #_distinct))
-
 (defn binary-pattern-powerset
+  ;; https://www.geeksforgeeks.org/power-set/
   "This method uses the intrinsic that from 0 to n, the entire binary sequence is included"
   [xs]
-  (let [binary-vec (-> xs count to-binary)]
-    binary-vec))
+  (let [indexed (zipmap (range) xs)
+        universe (->> xs count (exp 2))
+        sets (for [possible (range universe)] ;; complexity = 2^n
+               (for [[i x] indexed]           ;; complexity = n
+                 (when (< 0 (bit-and possible
+                                     (bit-shift-left 1 i)))
+                   x)))]
+    (map (partial remove nil?) sets)))
 
 (comment
-  (->> inputs count range)
-
-  (-> inputs
-      bad-naive-powerset
-      count)
-  (= (bad-naive-powerset inputs)
-     '(["apple" "orange" "pear"]
-       ["orange" "pear"]
-       ["pear"]
-       []
-       ["orange"]
-       ["apple" "pear"]
-       ["apple"]
-       ["apple" "orange"])))
+  (-> inputs binary-pattern-powerset))
 
 ;; =======================================
 ;; USE BACKTRACKING
