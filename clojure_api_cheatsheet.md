@@ -6,6 +6,8 @@
 
 conjoin, most important API!
 
+conjoining also works for `nil`
+
 ```clojure
 ;; for vector, it is like `appends`
 (conj [1 2 3] 4) => [1 2 3 4]
@@ -18,6 +20,8 @@ conjoin, most important API!
 
 ;; for set, it is like add
 (conj #{1 2} 3)
+
+(conj nil 2) => (2)
 ```
 
 #### Cons
@@ -50,6 +54,38 @@ peek behavior depends on data
 
 ;; for list, it is the same as `first`
 (peek '(1 2 3)) => 1
+```
+
+#### Comparisons among keep, filter, map and for.
+
+`keep` is like `map`, but removes nil values from result
+`keep` is like `filter`, but it does not filter `false` values
+
+I think, avoid it in live coding session
+
+```clojure
+(keep #(if (odd? %) %) (range 10))
+;;=> (1 3 5 7 9)
+
+(map #(if (odd? %) %) (range 10))
+;;=> (nil 1 nil 3 nil 5 nil 7 nil 9)
+
+(for [ x (range 10) :when (odd? x)] x)
+;;=> (1 3 5 7 9)
+
+(filter odd? (range 10))
+;;=> (1 3 5 7 9)
+```
+
+#### First and rest
+
+first and rest is always used together
+it is also possible to destructure like this:
+
+```clojure 
+(defn [[x & more]]
+  (prn x more))
+
 ```
 
 #### Filter vs Remove
@@ -121,3 +157,25 @@ Completely different things
 (repeatedly 3 #(+ 1 1)) => '(2 2 2)
 ```
 
+
+#### Juxt
+
+apply a series of fn to a single object and return as vector
+
+```clojure
+((juxt identity name) :keyword)
+;;=> [:keyword "keyword"]
+```
+
+#### Sorting
+
+https://andersmurphy.com/2019/03/09/clojure-sorting.html
+
+- sort is the simplest low to high sort (takes optional `compare` as params)
+- sort-by takes in a function that derive sortable value (also takes optional `compare` as params)
+- compare is a way to implement Comparable, by specifying (compare a b) or (compare b a)
+
+
+#### Mapcat
+
+like `map` but concats/flatten-1. It is sometimes useful to wrap with `(map vec)` so it becomes sortable, see [permutation](./src/coding_quizzes/backtracking_permutation.clj)
