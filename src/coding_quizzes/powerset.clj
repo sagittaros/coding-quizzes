@@ -16,13 +16,18 @@
         universe (->> xs count (exp 2))
         sets (for [possible (range universe)] ;; complexity = 2^n
                (for [[i x] indexed]           ;; complexity = n
+                 ;; if the position (eg 2) of bit (eg 00100) overlaps with
+                 ;; the bitsequence (eg 10100) of the number (20),
+                 ;; include to powerset
                  (when (< 0 (bit-and possible
                                      (bit-shift-left 1 i)))
                    x)))]
     (map (partial remove nil?) sets)))
 
 (comment
-  (-> inputs binary-pattern-powerset))
+  (-> inputs
+      binary-pattern-powerset
+      (#(vector (count %) %))))
 
 ;; =======================================
 ;; USE BACKTRACKING

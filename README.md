@@ -90,6 +90,8 @@ Use heuristics to perform this:
 
 https://cek.io/blog/2017/08/17/clojure-introduction-binary-bitwise/
 
+Refer [powerset.clj](src/coding_quizzes/powerset.clj)
+
 - bit-and
 - bit-or
 - (bit-shift-right n x) (halves n, by removing x least significant bit)
