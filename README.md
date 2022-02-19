@@ -41,6 +41,8 @@ Complexity of loop or nested loop = total loop count * complexity of iteration
 
 https://www.enjoyalgorithms.com/blog/time-complexity-analysis-of-loop-in-programming
 
+For example, [powerset](src/coding_quizzes/powerset.clj) has the first loop based on `2^n`, and the inner loop `n`, so it combined into `n*2^n`
+
 ## Understanding series
 
 https://www.toppr.com/guides/quantitative-aptitude/number-series/geometric-series/
