@@ -119,6 +119,8 @@ https://clojure.org/guides/weird_characters#unqote
 
 # Backtracking
 
+My weakest area!!
+
 Backtracking usually means exhausting the decision tree, like in a permutation problem.
 The time complexity is usually factorial time: O(n!)
 
@@ -146,9 +148,10 @@ https://www.geeksforgeeks.org/minimax-algorithm-in-game-theory-set-1-introductio
 
 # Pattern searching
 
-My weakest area!!
-https://www.geeksforgeeks.org/naive-algorithm-for-pattern-searching/?ref=lbp
-https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/?ref=lbp
+Also my weakest area!!
+
+- https://www.geeksforgeeks.org/naive-algorithm-for-pattern-searching/?ref=lbp
+- https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/?ref=lbp
 
 # Simulated Arithmetic
 
