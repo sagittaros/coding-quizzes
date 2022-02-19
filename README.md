@@ -11,8 +11,9 @@ https://www.youtube.com/watch?v=ngCos392W4w
 https://clojuredocs.org/clojure.core/recur
 
 # Read basic sequence manipulation
-[reads.clj](./src/coding_quizzes/reads.clj)
 
+- [reads.clj](./src/coding_quizzes/reads.clj)
+- [utils.clj](./src/coding_quizzes/utils.clj)
 - loop/recur is useful for divergent computation (1 to many)
 - corecursion is useful for series induction
 - reduce is useful to convergent computation (many to 1)
