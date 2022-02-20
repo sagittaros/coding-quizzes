@@ -7,6 +7,7 @@
 ;; Iterative approach
 ;; https://cs.stackexchange.com/questions/121230/explanation-of-on2n-time-complexity-for-powerset-generation
 ;; complexity = n(2^n)
+;; =======================================
 
 (defn binary-pattern-powerset
   ;; https://www.geeksforgeeks.org/power-set/
@@ -26,6 +27,8 @@
 
 ;; =======================================
 ;; Backtrack (recursive) approach
+;; same complexity as iterative approach
+;; =======================================
 
 (defn powerset [choices]
   (letfn
@@ -45,7 +48,8 @@
       binary-pattern-powerset
       (#(vector (count %) %)))
 
-  (powerset [1 2 3])
+  (binary-pattern-powerset [1 2 3])
+  (powerset inputs)
 
   (assert (= (->> inputs
                   binary-pattern-powerset

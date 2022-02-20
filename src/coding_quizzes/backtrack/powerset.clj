@@ -8,7 +8,8 @@
             i' (inc i)]
         (if (= i (->> choices count dec))
           [with without]
-          (mapcat identity ;; collect(unpack) recursive calls
+          ;; or `apply concat`, `mapcat identity`
+          (mapcat seq ;; collect(unpack) recursive calls
                   [(dive with i')
                    (dive without i')]))))]
     (dive [] 0)))
