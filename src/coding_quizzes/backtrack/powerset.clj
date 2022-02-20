@@ -2,7 +2,7 @@
 
 (defn powerset [choices]
   (letfn
-   [(dive [parent i] ;; walked should be vector
+   [(dive [parent i] ;; dive is preorder traversal
       (let [with (conj parent (nth choices i))
             without parent
             i' (inc i)]
