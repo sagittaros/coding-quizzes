@@ -4,6 +4,10 @@ pp = pprint.PrettyPrinter(indent=2)
 
 inputs = ["apple", "orange", "pear"]
 
+"""
+BAD IMPLEMENTATION. do not use it
+"""
+
 
 def all_combination(xs):
     possibilities = [xs] + [

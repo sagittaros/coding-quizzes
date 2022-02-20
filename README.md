@@ -2,6 +2,7 @@
 
 # Reading materials
 
+- https://www.youtube.com/c/NeetCode/videos
 - https://labuladong.gitbook.io/algo-en/
 
 # Recursion 
@@ -111,8 +112,10 @@ https://clojure.org/guides/weird_characters#unqote
 
 # Graph search problem
 
-- DFS
-- BFS
+https://stackoverflow.com/questions/47783359/how-to-implement-a-recursive-dfs-in-clojure-without-using-a-vector-stack
+
+- DFS (use tree-seq if possible)
+- BFS (refer "CoRecursion in Clojure")
 - Trie
 - Djisktra problem
 - Bellman Ford
@@ -128,6 +131,7 @@ The time complexity is usually factorial time: O(n!)
 - https://labuladong.gitbook.io/algo-en/iii.-algorithmic-thinking/detailsaboutbacktracking
 - https://www.baeldung.com/cs/backtracking-algorithms
 - https://www.baeldung.com/cs/backtracking-vs-dfs
+- https://youtu.be/Ph95IHmRp5M (N-Queens Problem)
 
 ``` python
 # pseudocode of backtracking framework
@@ -153,6 +157,12 @@ Also my weakest area!!
 
 - https://www.geeksforgeeks.org/naive-algorithm-for-pattern-searching/?ref=lbp
 - https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/?ref=lbp
+
+# Dynamic Programming
+
+Another weak area..
+
+- https://www.youtube.com/watch?v=H9bfqozjoqs
 
 # Simulated Arithmetic
 

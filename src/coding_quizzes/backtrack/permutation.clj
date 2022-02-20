@@ -6,9 +6,7 @@
     (->> choices
          (mapcat #(permute (filter (partial not= %) choices)
                            result
-                           (conj walked %)))
-         (map vec)
-         sort)))
+                           (conj (or walked []) %))))))
 
 (comment
-  (permute [1 2 3]))
+  (permute [1 2 3 4]))

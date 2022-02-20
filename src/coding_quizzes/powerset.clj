@@ -24,12 +24,42 @@
                    x)))]
     (map (partial remove nil?) sets)))
 
+;; =======================================
+;; Backtrack (recursive) approach
+
+(defn powerset [choices]
+  (letfn
+   [(dive [parent i] ;; walked should be vector
+      (let [with (conj parent (nth choices i))
+            without parent
+            i' (inc i)]
+        (if (= i (->> choices count dec))
+          [with without]
+          (mapcat identity
+                  [(dive with i')
+                   (dive without i')]))))]
+    (dive [] 0)))
+
 (comment
   (-> inputs
       binary-pattern-powerset
-      (#(vector (count %) %))))
+      (#(vector (count %) %)))
+
+  (powerset [1 2 3])
+
+  (assert (= (->> inputs
+                  binary-pattern-powerset
+                  (map vec)
+                  sort)
+             '([]
+               ["apple"]
+               ["orange"]
+               ["pear"]
+               ["apple" "orange"]
+               ["apple" "pear"]
+               ["orange" "pear"]
+               ["apple" "orange" "pear"]))))
 
 ;; =======================================
 ;; TODO USE BACKTRACKING
 ;; complexity = n(2^n)
-

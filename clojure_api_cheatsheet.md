@@ -179,3 +179,9 @@ https://andersmurphy.com/2019/03/09/clojure-sorting.html
 #### Mapcat
 
 like `map` but concats/flatten-1. It is sometimes useful to wrap with `(map vec)` so it becomes sortable, see [permutation](./src/coding_quizzes/backtrack/permutation.clj)
+
+## Set
+
+#### Index
+
+https://clojuredocs.org/clojure.set/index
