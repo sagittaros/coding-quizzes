@@ -12,6 +12,8 @@
 
 (comment
   (enqueue [1 2 3] 4 5)
+  ;; simply conj to enqueue
+  (conj [1 2 3] 4 5)
   (dequeue [1 2 3 4 5])
   ;; or simply destructure
   (let [[first & rest] [1 2 3 4 5]]

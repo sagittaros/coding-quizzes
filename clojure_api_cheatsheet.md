@@ -324,3 +324,7 @@ priority-map
 ordering-map 
 (clojure.data.int-map/) 
 int-map
+
+#### Functor 
+
+Use clojure's `walk`, `prewalk`, `postwalk` to achieve functor like capability

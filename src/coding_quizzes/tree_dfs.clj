@@ -93,3 +93,19 @@
   tree3
   (apply dfs3 tree3)
   (apply dfs3 [1 [2] [3] [4 [8]] [5]]))
+
+;; ========================================================================
+;; The simplest 1 liner
+;; ========================================================================
+
+(defn dfs [[val & children]]
+  (cons val (mapcat dfs children)))
+
+(comment
+  ;; this is already done! but at the cost of O(N log N)
+  (flatten tree3)
+  ;; using tree-seq
+  ;; tree-seq returns a "focus" window, and we are only interested in the root of each window
+  (map first (tree-seq next rest tree3))
+
+  (dfs tree3))
