@@ -110,9 +110,25 @@ Refer [powerset.clj](src/coding_quizzes/powerset.clj)
 use syntax quoting, unquote(~), and unquote-splicing(~@) to simplify code
 https://clojure.org/guides/weird_characters#unqote
 
+# Tree algorithms
+
+https://towardsdatascience.com/4-types-of-tree-traversal-algorithms-d56328450846#:~:text=Preorder%20Traversal%20is%20another%20variant,to%20the%20left%20sub-tree.
+
+# Heap 
+
+Commonly used for priority queue.
+It is a prerequisites for Dijkstra's Shortest Path and Prim's Minimum Spanning Tree
+
+- https://www.geeksforgeeks.org/binary-heap/?ref=lbp
+- [Clojure implementation of binary heap](https://gist.github.com/justinhj/7074000)
+- [Fibonacci heap](https://maryrosecook.com/blog/post/the-fibonacci-heap-ruins-my-life)
+
+
 # Graph search problem
 
 https://stackoverflow.com/questions/47783359/how-to-implement-a-recursive-dfs-in-clojure-without-using-a-vector-stack
+
+[Dijkstra implementation in clojure](https://github.com/maryrosecook/dijkstra)
 
 - DFS (use tree-seq if possible)
 - BFS (refer "CoRecursion in Clojure")
@@ -160,9 +176,13 @@ Also my weakest area!!
 
 # Dynamic Programming
 
-Another weak area..
-
 - https://www.youtube.com/watch?v=H9bfqozjoqs
+- https://www.geeksforgeeks.org/longest-palindrome-substring-set-1
+- https://www.geeksforgeeks.org/sieve-of-eratosthenes/?ref=leftbar-rightbar
+- https://www.geeksforgeeks.org/edit-distance-dp-5/
+
+# Greedy algorithms
+
 
 # Simulated Arithmetic
 
@@ -177,3 +197,10 @@ Another weak area..
 - [Basic data structure/problems](https://u.osu.edu/cstutorials/2016/11/21/7-algorithms-and-data-structures-every-programmer-must-know/)
 - [Mazes](https://markbastian.github.io/posts-output/2015-04-11-mazes/)
 - [Drop water problem](https://labuladong.gitbook.io/algo-en/iv.-high-frequency-interview-problem/trapping_rain_water)
+- [Project Euler](https://projecteuler.net)
+
+# Tricks?
+
+- whatever is unknown/unsure, turn it into function first, and figure it out later
+- try to visualize the recursion before starting
+- do a lot of practice questions

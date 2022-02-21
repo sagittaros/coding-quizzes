@@ -2,6 +2,47 @@
 
 ## Sequence manipulation
 
+#### Negation
+
+1. complement (negate a function outptu)
+2. not=
+3. not
+
+#### Case, Cond and Condp
+
+1. `case` matches based on value, the last clause is the default value is none matches
+2. `cond` matches based on condition, if not match, error will be thrown, use `:else` to handle default cases
+3. `condp` - refers below
+
+#### Condp
+
+https://clojuredocs.org/clojure.core/condp
+
+```clojure
+;; the form (pred-fn test-fn expression):
+(apply nil? [my-value])
+(apply empty? [my-value])
+(apply map? [my-value])
+
+;; can be written as
+(condp apply [my-value]
+  nil? v1
+  empty? v2
+  map? v3)
+
+;; or if the result is a function
+(condp apply [my-value]
+  nil? :>> fn1
+  empty? :>> fn2
+  map? :>> fn3)
+```
+
+#### List vs Seq
+
+1. `seq` is an abstraction, `list` is an implementation
+2. `seq` can be lazy, `list` cannot
+3. `seq` cannot be `peek`ed, unlike `list`
+
 #### Conj
 
 conjoin, most important API!
@@ -27,6 +68,29 @@ conjoining also works for `nil`
 #### Cons
 
 I seldom use this
+
+#### Merge vs Merge-With
+
+For merge-with, common operations are:
+- max
+- min
+- +
+- -
+- into
+
+The operation should not be unary
+
+```clojure
+;; Demonstrating difference between merge and merge-with
+
+;; For merge the value from the right-most map wins:
+(merge {:a 1} {:a 2} {:a 3})
+;;=> {:a 3}
+
+;; while for merge-with values are merged (with function + in this example):
+(merge-with + {:a 1} {:a 2} {:a 3})
+;;=> {:a 6}
+```
 
 #### Pop vs Peek
 
@@ -138,6 +202,14 @@ take subset of vector from start(incl) to end(excl)
 `vector` takes in &args and turn them into vector
 `vec` takes sequentials (list, map, set, seq/nil) and turn into vector
 
+#### Into vs Concat
+
+`into` can be used like `concat`, but it retains original data type
+
+```clojure
+(into [1 2] [3 4]) => [1 2 3 4]
+```
+
 #### Rest vs Next
 
 `next` and `rest` does the same thing. But `rest` will continue to operate in seq, whereas `next` will ends up with `nil`
@@ -156,7 +228,6 @@ Completely different things
 
 (repeatedly 3 #(+ 1 1)) => '(2 2 2)
 ```
-
 
 #### Juxt
 
@@ -185,3 +256,71 @@ like `map` but concats/flatten-1. It is sometimes useful to wrap with `(map vec)
 #### Index
 
 https://clojuredocs.org/clojure.set/index
+
+#### Some
+
+By default, `some` returns the first logical true value of the predicate-fn. For a set, it returns the first matched item in the set.
+
+One common idiom is to use a set as pred, for example
+this will return :fred if :fred is in the sequence, otherwise nil:
+(some #{:fred} coll)
+
+
+
+## Map family
+
+#### Operations
+
+- merge
+- merge-with
+- assoc, assoc-in
+- get, get-in
+- dissoc
+- update
+- select-keys
+- keys
+- vals
+- reduce-kv
+
+```clojure
+(reduce-kv 
+  (fn [m' k v] (assoc m' k (inc v)))
+  {}
+  m)
+
+(defn map-vals [m f]
+  (into {} (for [[k v]] k (f v))))
+```
+
+#### Sorted Map
+
+Map is sorted by its keys
+
+#### Priority Map
+
+https://github.com/clojure/data.priority-map
+
+```clojure
+user=> (require '[clojure.data.priority-map :refer [priority-map]])
+nil
+user=> (def p (priority-map :a 2 :b 1 :c 3 :d 5 :e 4 :f 3))
+#'user/p
+
+user=> p
+{:b 1, :a 2, :c 3, :f 3, :e 4, :d 5}
+```
+
+#### More Map variants
+
+[Useful](https://github.com/clj-commons/useful/blob/master/src/flatland/useful/map.clj#L243-L245)
+
+(clojure.data.avl/) 
+sorted-map sorted-map-by 
+(flatland.ordered.map/) 
+ordered-map 
+(clojure.data.priority-map/) 
+priority-map 
+(flatland.useful.map/) 
+ordering-map 
+(clojure.data.int-map/) 
+int-map
