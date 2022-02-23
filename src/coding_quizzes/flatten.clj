@@ -30,6 +30,7 @@
     [(str/join "." k) v]))
 
 (comment
+  (join-keys nested)
   (join-keys-alt nested)
   (->> nested
        join-keys-alt

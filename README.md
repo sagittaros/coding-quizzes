@@ -116,12 +116,30 @@ https://towardsdatascience.com/4-types-of-tree-traversal-algorithms-d56328450846
 
 # Heap 
 
+Heap is a less-ordered version of binary search tree.
+
+It has a few notable properties:
+1. There is either min-heap (where root is minimum) or max-heap (where root is maximum)
+2. The tree must be complete:
+   - all levels except last must be filled
+   - last level must be filled from left to right
+3. it uses trickle up for insertion (swapping lesser with bigger, or bigger with lesser)
+4. it uses swap and trickle down for deletion (swap with last node)
+5. the last node is important, and it is always at the right-most bottom level
+6. 
+
 Commonly used for priority queue.
 It is a prerequisites for Dijkstra's Shortest Path and Prim's Minimum Spanning Tree
 
 - https://www.geeksforgeeks.org/binary-heap/?ref=lbp
 - [Clojure implementation of binary heap](https://gist.github.com/justinhj/7074000)
 - [Fibonacci heap](https://maryrosecook.com/blog/post/the-fibonacci-heap-ruins-my-life)
+
+# Binary Search Tree
+
+TODO
+
+Compare with heap
 
 
 # Graph search problem
@@ -204,3 +222,16 @@ Also my weakest area!!
 - whatever is unknown/unsure, turn it into function first, and figure it out later
 - try to visualize the recursion before starting
 - do a lot of practice questions
+
+# High probability questions
+
+## Print all paths from source to dest
+
+Time Complexity: O(V^V). 
+The time complexity is polynomial. From each vertex there are v vertices that can be visited from current vertex.
+Auxiliary space: O(V^V). 
+To store the paths V^V space is needed.
+
+- https://stackoverflow.com/questions/49209058/what-is-the-time-complexity-of-finding-all-possible-ways-from-one-to-another
+- https://www.geeksforgeeks.org/find-paths-given-source-destination/
+- https://adventofcode.com/2021/day/12
