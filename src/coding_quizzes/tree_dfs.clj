@@ -109,3 +109,18 @@
   (map first (tree-seq next rest tree3))
 
   (dfs tree3))
+
+;; ========================================================================
+;; Adjacency list variant
+;; ========================================================================
+
+(def tree-aj {1 [2 3 9]
+              3 [4 5]
+              4 [66]
+              9 [8 28]})
+
+(defn dfs-aj [aj curr]
+  (cons curr (mapcat (partial dfs-aj aj) (aj curr))))
+
+(comment
+  (dfs-aj tree-aj 1))
