@@ -29,17 +29,18 @@
 
 (defn expsum-parallel [n]
   (let [mod' #(mod % 123456789)
-        memoized-exp (memoize exp)]
-    (r/fold (comp mod' +) (r/map memoized-exp (range 1 (inc n))))))
+        memoized-exp (memoize exp)
+        inputs (vec (range 1 (inc n)))]
+    (r/fold (comp mod' +) (r/map memoized-exp inputs))))
 
 (comment
   (time (expsum 50000000)) ;; => 30733500, 725 seconds
-  (time (expsum-parallel 50000000)) ;; => 30733500, 725 seconds (similar time..)
+  (time (expsum-parallel 50000000)) ;; => 30733500, 246 seconds
   (time (expsum 10000)) ;; => 65812574
   (time (expsum-parallel 10000)) ;; => 65812574
-  (exp 3)
 
   ;; using reducers library
   (r/fold + (r/map exp (range 1 (inc 2))))
 
+  (exp 3)
   (expsum 5))
