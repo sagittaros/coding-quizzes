@@ -266,6 +266,35 @@ this will return :fred if :fred is in the sequence, otherwise nil:
 (some #{:fred} coll)
 
 
+## Partition family
+
+#### Partition vs Partition All
+
+They are the same thing, except `partition-all` would return incomplete partitions (due to size)
+
+```clojure
+coding-quizzes.core=> (partition 2 1 [1 2 3 4 5])
+((1 2) (2 3) (3 4) (4 5))
+coding-quizzes.core=> (partition-all 2 1 [1 2 3 4 5])
+((1 2) (2 3) (3 4) (4 5) (5))
+coding-quizzes.core=> (partition 2 [1 2 3 4 5])
+((1 2) (3 4))
+coding-quizzes.core=> (partition-all 2 [1 2 3 4 5])
+((1 2) (3 4) (5))
+coding-quizzes.core=>
+```
+
+#### Partition by
+
+This is a neat way to partition a sequence by using function
+
+```clojure
+user=> (partition-by odd? [1 1 1 2 2 3 3])
+((1 1 1) (2 2) (3 3))
+user=> (partition-by even? [1 1 1 2 2 3 3])
+((1 1 1) (2 2) (3 3))
+```
+
 
 ## Map family
 

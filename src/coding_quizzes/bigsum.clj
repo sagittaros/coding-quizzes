@@ -1,4 +1,5 @@
-(ns coding-quizzes.bigsum)
+(ns coding-quizzes.bigsum
+  (:require [clojure.core.reducers :as r]))
 
 ;; F(n) = (1^1 + 2^2 + 3^3 + ... + n^n) modulo 123456789 (1 <= n <= 50_000_000)
 
@@ -8,10 +9,7 @@
 
 (defn mod-mult [& args]
   (let [mod' #(mod % 123456789)]
-    (loop [remaining args prod 1]
-      (if (empty? remaining) prod
-          (recur (rest remaining)
-                 (mod' (* prod (first remaining))))))))
+    (reduce #(mod' (* %1 %2)) args)))
 
 (defn exp [n & [base]]
   (let [base' (or base n)
@@ -25,12 +23,23 @@
 (defn expsum [n]
   (let [mod' #(mod % 123456789)
         memoized-exp (memoize exp)]
-    (loop [i 1 sum 0]
-      (if (> i n) sum
-          (recur (inc i) (mod' (+ sum (mod' (memoized-exp i)))))))))
+    (reduce (fn [sum i]
+              (->> i memoized-exp (+ sum) mod'))
+            (range 1 (inc n)))))
+
+(defn expsum-parallel [n]
+  (let [mod' #(mod % 123456789)
+        memoized-exp (memoize exp)]
+    (r/fold (comp mod' +) (r/map memoized-exp (range 1 (inc n))))))
 
 (comment
-  (expsum 50000000)
-  (expsum 10000)
+  (time (expsum 50000000)) ;; => 30733500, 725 seconds
+  (time (expsum-parallel 50000000)) ;; => 30733500, 725 seconds (similar time..)
+  (time (expsum 10000)) ;; => 65812574
+  (time (expsum-parallel 10000)) ;; => 65812574
   (exp 3)
-  (expsum 10))
+
+  ;; using reducers library
+  (r/fold + (r/map exp (range 1 (inc 2))))
+
+  (expsum 5))
