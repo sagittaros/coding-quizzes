@@ -10,13 +10,27 @@ A-end
 b-end")
 
 (defn ->adjacency-list [input]
-  (->> (str/split-lines paths)
+  (->> (str/split-lines input)
        (map #(str/split % #"-"))
        (reduce (fn [acc [s e]]
-                 (merge-with concat acc {(keyword s) [(keyword e)]
-                                         (keyword e) [(keyword s)]}))
+                 (merge-with concat acc {s [e] e [s]}))
                {})))
 
-(defn traverse [g])
+(defn allow? [visited node]
+  (not (visited (str/lower-case node))))
 
-(comment (->adjacency-list paths))
+(defn get-paths [g node visited path]
+  (let [path' (conj path node)
+        more (g node)
+        visited' (conj visited node)
+        q (filter (partial allow? visited') more)]
+    ;; (prn {"node" node "next" (g node) "path" path' "q" q})
+    (if (= "end" node) [path']
+        (mapcat #(get-paths g % visited' path') q))))
+
+;; ()
+
+(comment
+  (->adjacency-list paths)
+  (println)
+  (get-paths (->adjacency-list paths) "start" #{} []))

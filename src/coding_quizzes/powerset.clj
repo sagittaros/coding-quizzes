@@ -36,7 +36,7 @@
       (let [with (conj parent (nth choices i))
             without parent
             i' (inc i)]
-        (if (= i (->> choices count dec))
+        (if (= i (->> choices count dec)) ;; don't go beyond the tree
           [with without]
           (mapcat identity
                   [(dive with i')
