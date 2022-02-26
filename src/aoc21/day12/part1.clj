@@ -1,4 +1,4 @@
-(ns aoc21.day12.core
+(ns aoc21.day12.part1
   (:require [clojure.string :as str]))
 
 (def paths "start-A
@@ -8,6 +8,31 @@ A-b
 b-d
 A-end
 b-end")
+
+(def paths2 "re-js
+qx-CG
+start-js
+start-bj
+qx-ak
+js-bj
+ak-re
+CG-ak
+js-CG
+bj-re
+ak-lg
+lg-CG
+qx-re
+WP-ak
+WP-end
+re-lg
+end-ak
+WP-re
+bj-CG
+qx-start
+bj-WP
+JG-lg
+end-lg
+lg-iw")
 
 (defn ->adjacency-list [input]
   (->> (str/split-lines input)
@@ -33,4 +58,10 @@ b-end")
 (comment
   (->adjacency-list paths)
   (println)
-  (get-paths (->adjacency-list paths) "start" #{} []))
+  (-> paths
+      ->adjacency-list
+      (get-paths "start" #{} []))
+  (-> paths2
+      ->adjacency-list
+      (get-paths "start" #{} [])
+      count))
