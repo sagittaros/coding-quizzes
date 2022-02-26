@@ -1,5 +1,6 @@
 (ns coding-quizzes.reads
-  (:require [clojure.walk :as walk]))
+  (:require [clojure.walk :as walk]
+            [clojure.data.priority-map :refer [priority-map]]))
 
 (comment
   ;; Interleave vs zipmap
@@ -143,3 +144,14 @@
 ;; TODO Read clojure source!
 ;; https://github.com/clojure/clojure/blob/clojure-1.10.1/src/clj/clojure/core.clj#L4931
 ;; ===========================================================
+
+(comment
+  ;; read from stdin
+  (read-line))
+
+;; ===========================================================
+;; Priority Map
+;; ===========================================================
+(comment
+  (let [pm (priority-map :a 3 :b 2 :c 5)]
+    (peek pm)))

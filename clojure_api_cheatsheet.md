@@ -321,6 +321,23 @@ user=> (partition-by even? [1 1 1 2 2 3 3])
   (into {} (for [[k v]] k (f v))))
 ```
 
+#### Interleave and Zip
+
+```clojure
+(comment
+  ;; Interleave vs zipmap
+  ;; https://clojuredocs.org/clojure.core/interleave
+  ;; https://clojuredocs.org/clojure.core/zipmap
+  (into [] (interleave [:fruit :color :temp :extra]
+                       ["grape" "red" "hot"]
+                       [100 200 300]))
+  (apply assoc {}
+         (interleave [:fruit :color :temp]
+                     ["grape" "red" "hot"]))
+  (zipmap [:fruit :color :temp :extra]
+          ["grape" "red" "hot"]))
+```
+
 #### Sorted Map
 
 Map is sorted by its keys
