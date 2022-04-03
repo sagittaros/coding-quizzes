@@ -1,12 +1,42 @@
 (ns coding-quizzes.backtrack.permutation)
 
-(defn permute [choices & [result walked]]
-  (if (empty? choices)
-    (conj result walked)
-    (->> choices
+(defn permute [choices & [walked]]
+  (prn "choices" choices "walked" walked)
+  (if (empty? choices) ;; terminating condition
+    [walked] ;; branch is complete
+    (->> choices ;; backtracking starts
+         ;; permute n-1 elements, then join results
          (mapcat #(permute (filter (partial not= %) choices)
-                           result
+                           ;; walking down the branch
                            (conj (or walked []) %))))))
 
 (comment
-  (permute [1 2 3 4]))
+  (permute [1 2 3])
+  (str \a \b)
+  (prn "====")
+  (zipmap (range) "aaa")
+  (->> "abb"
+       (zipmap (range))
+       permute
+       (map (partial map second))
+       (map (partial apply str))
+       set))
+
+;; =========================
+;; Polkadot quiz
+;; =========================
+
+(defn permute' [choices & [walked]]
+  (if (empty? choices)  ;; terminating condition
+    [walked]  ;; branch is complete
+    (->> choices ;; backtrack starts
+         (mapcat #(permute' (filter (partial not= %) choices)  ;; permute n-1 elements, join results
+                            (conj walked %))))))  ;; walk down the branch
+
+(->> "input" ;; start threading
+     (zipmap (range)) ;; index the string
+     permute'  ;; run permute
+     (map (partial map second)) ;; unpack char
+     (map (partial apply str)) ;; char to str
+     set ;; dedupe
+     count)  ;; equivalent to O(n!)
