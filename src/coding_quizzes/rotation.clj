@@ -7,12 +7,12 @@
         head (subs s start' (min slen (+ start' len)))
         hlen (count head)
         more (- len hlen)]
-    (prn head start len more)
     (if (< more 1) head
-        (str head (start-at s (+ start hlen) more)))))
+        (str head (start-at s (+ start hlen) more))))) ;; recurse
 
 (defn is-rotation? [a b]
   (let [reverse? (> (count a) (count b))
+        ;; swap `a`` with `b``, since we are using `a` as the generator
         [a b] (if reverse? [b a] [a b])]
     (loop [i 0]
       (cond
