@@ -8,6 +8,19 @@
 2. not=
 3. not
 
+#### Iteration
+
+###### Eager
+
+`reduce`, `run!`, `mapv` are both eager
+
+`run!` is similar to `reduce`, but it does not gather result.
+Both `run!` and `reduce` support early termination using `reduced`, refer [N Queen problem](./src/coding_quizzes/dp/n_queen.clj)
+
+###### Lazy
+
+`map`, `for` are both lazy
+
 #### Case, Cond and Condp
 
 1. `case` matches based on value, the last clause is the default value is none matches

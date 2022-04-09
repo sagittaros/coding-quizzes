@@ -17,13 +17,12 @@
 ;;       (diag-rtl-idx i j n))))
 
 (defn n-queen [n]
-  (let [count (atom 0)
-        valid-solutions (atom [])]
+  (let [valid-solutions (atom [])]
     (letfn
      [(mk-state []
         {:board (->> 0 (repeat n) vec (repeat n) vec)
          :cols (vec (repeat n false))
-         :diag1 (vec (repeat (inc (* 2 (dec n))) false))
+         :diag1 (vec (repeat (inc (* 2 (dec n))) false)) ;; based on induction, I don't know why it works
          :diag2 (vec (repeat (inc (* 2 (dec n))) false))})
       (search [y {:keys [board cols diag1 diag2] :as state}]
         (run! ;; run! is similar to reduce
@@ -32,7 +31,6 @@
                    (cond
                      (= y n) ;; beyond bound, solved!
                      (do
-                       (swap! count inc)
                        (swap! valid-solutions conj board)
                        (reduced :done)) ;; reduced prematuraly terminate iteration, like `break`
 
@@ -48,14 +46,14 @@
                                  (update :diag2 #(assoc % d2-idx true)))))))
          (range n)))]
       (search 0 (mk-state))
-      [@count @valid-solutions])))
+      @valid-solutions)))
 
 (comment
   ;; (diag-ltr-debug 3)
   ;; (diag-rtl-debug 6)
 
   (println "------")
-  (first (n-queen 5))
+  (count (n-queen 8))
 
 ;; column
   [[0 1 2 3]
