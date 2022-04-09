@@ -1,4 +1,4 @@
-(ns coding-quizzes.longest-substr
+(ns coding-quizzes.strings.longest-substr
   (:require [clojure.string :as str]))
 
 (defn substrings [s]

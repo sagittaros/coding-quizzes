@@ -1,4 +1,4 @@
-(ns coding-quizzes.linked-list)
+(ns coding-quizzes.arithmetic.linked-list-sum)
 
 (defn num->list [^Integer n]
   (->> (str n)

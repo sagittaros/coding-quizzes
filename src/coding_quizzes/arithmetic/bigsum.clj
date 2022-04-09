@@ -1,4 +1,4 @@
-(ns coding-quizzes.bigsum
+(ns coding-quizzes.arithmetic.bigsum
   (:require [clojure.core.reducers :as r]))
 
 ;; F(n) = (1^1 + 2^2 + 3^3 + ... + n^n) modulo 123456789 (1 <= n <= 50_000_000)

@@ -1,4 +1,4 @@
-(ns coding-quizzes.divide
+(ns coding-quizzes.arithmetic.divide
   (:require [clojure.string :as str]))
 
 ;; 8:22 am
