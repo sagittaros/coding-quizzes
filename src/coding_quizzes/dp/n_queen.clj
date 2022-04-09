@@ -16,7 +16,10 @@
 ;;     (for [j (range n)]
 ;;       (diag-rtl-idx i j n))))
 
-(defn n-queen [n]
+(defn n-queen
+  "Go from top row to the bottom row in a recursive manner.
+  If y is beyond board range, a solution has been found"
+  [n]
   (let [valid-solutions (atom [])]
     (letfn
      [(mk-state []
@@ -26,15 +29,15 @@
          :diag2 (vec (repeat (inc (* 2 (dec n))) false))})
       (search [y {:keys [board cols diag1 diag2] :as state}]
         (run! ;; run! is similar to reduce
-         (fn [x] (let [d1-idx (+ x y)
-                       d2-idx (-> x (- y) (+ n) dec)]
+         (fn [x] (let [d1-idx (+ x y) ;;diagonal: top-left -> bottom-right
+                       d2-idx (-> x (- y) (+ n) dec)]  ;;diagonal: top-right -> bottom-left
                    (cond
                      (= y n) ;; beyond bound, solved!
                      (do
                        (swap! valid-solutions conj board)
                        (reduced :done)) ;; reduced prematuraly terminate iteration, like `break`
 
-                     (or (cols x) (diag1 d1-idx) (diag2 d2-idx)) ;; clashed
+                     (or (cols x) (diag1 d1-idx) (diag2 d2-idx))
                      :clashed
 
                      :else ;; continue search by moving down the row
