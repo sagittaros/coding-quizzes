@@ -58,6 +58,12 @@
   ;; transpose logic
   (transpose-2d matrix1)
   (transpose-2d matrix2)
+  (-> [[:a :b :c]
+       [:d :e :f]]
+      transpose-2d
+      (= [[:a :d]
+          [:b :e]
+          [:c :f]]))
 
   ;; square matrix
   (= (rotate-90 matrix1) rotated1)
