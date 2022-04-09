@@ -17,19 +17,23 @@
 ;;       (diag-rtl-idx i j n))))
 
 (defn n-queen [n]
-  (let [count (atom 0)]
+  (let [count (atom 0)
+        valid-solutions (atom [])]
     (letfn
      [(mk-state []
-        {:cols (vec (repeat n false))
+        {:board (->> 0 (repeat n) vec (repeat n) vec)
+         :cols (vec (repeat n false))
          :diag1 (vec (repeat (inc (* 2 (dec n))) false))
          :diag2 (vec (repeat (inc (* 2 (dec n))) false))})
-      (search [y {:keys [cols diag1 diag2] :as state}]
+      (search [y {:keys [board cols diag1 diag2] :as state}]
         (doseq [x (range n)]
           (let [d1-idx (+ x y)
                 d2-idx (-> x (- y) (+ n) dec)]
             (cond
               (= y n) ;; terminate
-              (swap! count inc)
+              (do
+                (swap! count inc)
+                (swap! valid-solutions conj board))
 
               (or (cols x) (diag1 d1-idx) (diag2 d2-idx)) ;; clashed
               :clashed
@@ -37,11 +41,12 @@
               :else ;; continue search by moving down the row
               (search (inc y)
                       (-> state
+                          (update :board #(assoc-in % [x y] 1))
                           (update :cols #(assoc % x true))
                           (update :diag1 #(assoc % d1-idx true))
                           (update :diag2 #(assoc % d2-idx true))))))))]
       (search 0 (mk-state))
-      @count)))
+      [@count @valid-solutions])))
 
 (comment
   ;; (diag-ltr-debug 3)
