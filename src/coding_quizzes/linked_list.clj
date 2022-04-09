@@ -22,5 +22,6 @@
 (comment
   (sum 342 465)
   (sum 9999999 9999)
+  (sum 99 99)
   (num->list 342)
   (num->list 807))

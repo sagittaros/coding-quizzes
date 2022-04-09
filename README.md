@@ -5,6 +5,12 @@
 - https://www.youtube.com/c/NeetCode/videos
 - https://labuladong.gitbook.io/algo-en/
 
+# Coding questions
+
+- codeforces
+- https://leetcode.com/list/xi4ci4ig/
+- https://www.adamconrad.dev/blog/changing-jobs-during-the-great-resignation/
+
 # Recursion 
 ## Understand tower of hanoi
 https://www.youtube.com/watch?v=rf6uf3jNjbo
