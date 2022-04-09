@@ -34,12 +34,15 @@
       (cond
         ;; terminating condition
         (= (inc j) (count s))
-        (max longest (- j i (if (some? (wm c)) 0 -1)))
+        (let [incl-last-letter (if (some? (wm c)) 0 -1)]
+          (max longest (- j i incl-last-letter)))
 
+        ;; start new window and compare for longest substr
         (some? (wm c))
         {:wm {c j} :i j
          :longest (max longest (- j i))}
 
+        ;; expand window
         :else {:wm (assoc wm c j) :i i
                :longest longest}))]
     (->> s
