@@ -40,14 +40,17 @@
                           (get-in B [k j]))))
                 0 (range K))))))
 
+;; (defn transpose-2d-lengthy [M]
+;;   (assert (and (vector? M) (vector? (first M)))
+;;           "Must be in vector form")
+;;   (let [n (count M)
+;;         m (count (first M))]
+;;     (mapv (fn [i]
+;;             (mapv (fn [j] (get-in M [j i]))
+;;                   (range n))) (range m))))
+
 (defn transpose-2d [M]
-  (assert (and (vector? M) (vector? (first M)))
-          "Must be in vector form")
-  (let [n (count M)
-        m (count (first M))]
-    (mapv (fn [i]
-            (mapv (fn [j] (get-in M [j i]))
-                  (range n))) (range m))))
+  (apply mapv vector M))
 
 (defn reverse-rows [M]
   (vec (rseq M)))
@@ -58,6 +61,7 @@
   ;; transpose logic
   (transpose-2d matrix1)
   (transpose-2d matrix2)
+  (apply mapv vector matrix2)
   (-> [[:a :b :c]
        [:d :e :f]]
       transpose-2d
