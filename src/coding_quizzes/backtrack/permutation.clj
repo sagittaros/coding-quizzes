@@ -4,11 +4,9 @@
   (prn "choices" choices "walked" walked)
   (if (empty? choices) ;; terminating condition
     [walked] ;; branch is complete
-    (->> choices ;; backtracking starts
-         ;; permute n-1 elements, then join results
-         (mapcat #(permute (filter (partial not= %) choices)
-                           ;; walking down the branch
-                           (conj (or walked []) %))))))
+    (mapcat #(permute (filter (partial not= %) choices) ;; permute n-1 elements, join results
+                      (conj (or walked []) %))
+            choices))) ;; walking down the branch
 
 (comment
   (permute [1 2 3])

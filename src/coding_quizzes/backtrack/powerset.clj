@@ -1,6 +1,6 @@
 (ns coding-quizzes.backtrack.powerset)
 
-(defn permute [choices]
+(defn powerset [choices]
   (letfn
    [(dive [parent i] ;; dive is preorder traversal
       (let [with (conj parent (nth choices i))
@@ -16,4 +16,4 @@
 
 (comment
   (powerset [1 2 3])
-  (map (partial apply str) (permute "abc")))
+  (map (partial apply str) (powerset "abc")))

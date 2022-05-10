@@ -19,6 +19,8 @@
 ;; [list [list [list [list]]]], and concatenated at every step
 (defn bfs [graph]
   (letfn [(bfs-queue [& graphs]
+            (println "graphs" graphs)
+            (println "graphs'" (mapcat rest graphs))
             (when graphs ;; terminate if nothing left to add
               (->> graphs
                    (mapcat rest)
@@ -40,5 +42,6 @@
 
 (comment
   tree
+  (println)
   (= (bfs tree)
      (bfs-aj tree-aj 1)))
